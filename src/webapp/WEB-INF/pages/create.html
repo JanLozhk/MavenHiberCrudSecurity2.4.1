@@ -19,17 +19,23 @@
     </style>
 </head>
 <body>
+<a th:href="@{/logout}">Logout</a>
 <table class="click-table" id="user_table">
     <tr>
         <thead>
         <h2 align="center">Create User</h2>
+        <th>Login</th>
+        <th>Password</th>
         <th>Name</th>
         <th>Last name</th>
         <th>email</th>
+        <th>Actions</th>
         </thead>
         <tbody>
-        <form th:method="post" th:action="@{/user}" th:object="${user}">
+        <form th:method="post" th:action="@{/admin}" th:object="${user}">
 <!--            <th><label for="name">Enter name</label></th>-->
+            <th><input required type="text" th:field="*{login}" id="login"/></th>
+            <th><input required type="text" th:field="*{password}" id="password"/></th>
             <th><input required type="text" th:field="*{firstName}" id="name"/></th>
 <!--            <th><label for="SecondName">Enter SecondName</label></th>-->
             <th><input required type="text" th:field="*{lastName}" id="SecondName"/></th>
@@ -38,8 +44,8 @@
             <th><input type="submit" value="Accept"/></th>
         </form>
         </tbody>
-        <th ><a href="/user/all"><input type="button" value="BackToList"></a></th>
     </tr>
 </table>
+<a href="/admin/all"><input type="button" value="BackToList"></a>
 </body>
 </html>

@@ -3,20 +3,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>EDIT_USER</title>
+    <style>
+        table {
+            width: 100%;
+            border: 4px double black;
+            border-collapse: collapse;
+        }
+        th {
+            text-align: left;
+            background: #eee8aa; /* Цвет фона ячеек */
+            padding: 5px; /* Поля вокруг содержимого ячеек */
+            border: 1px solid black; /* Граница вокруг ячеек */
+        }
+    </style>
 </head>
 <body>
-<!--<p th:text="${user.getId()}">VALUE</p>-->
-<p th:text="${user.getFirstName()}">VALUE</p>
-<p th:text="${user.getLastName()}">VALUE</p>
-<p th:text="${user.getEmail()}">VALUE</p>
+<a th:href="@{/logout}">Logout</a>
+<div>
+<!--    <table>-->
 
-<a th:href="@{/edit/{id}/edit(id=${user.getId()})}">Edit</a>
 
-<form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
-    <input type="submit" value="Delete"/>
-</form>
-</body>
-</html>
+        <table th:object="${user}" >
+            <thead>
+            <h2 align="center">Users List</h2>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>Mail</th>
+            </thead> <tr>
+                <tbody>
+<!--                <td><label for="id"></label></td>-->
+                <td><b th:text="*{id}" id="id"></b></td>
+<!--                <td><label for="login">Login</label></td>-->
+                <td><b th:text="*{login}" id="login"></b></td>
+<!--                <td><label for="name">First name</label></td>-->
+                <td><b th:text="*{firstName}" id="name"></b></td>
+<!--                <td><label for="SecondName">Second name</label></td>-->
+                <td><b th:text="*{lastName}" id="SecondName"></b></td>
+<!--                <td><label for="Email">E-Mail</label></td>-->
+                <td><b th:text="*{email}" id="Email"></b></td>
+            </tbody>
+            </tr>
+        </table>
 </body>
 </html>
