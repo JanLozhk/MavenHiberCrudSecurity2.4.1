@@ -1,5 +1,6 @@
 package app.model;
 
+
 import javax.persistence.*;
 
 @Entity

@@ -22,8 +22,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void create(User user) {
-        Authority authority = new Authority("USER");
-        authorityDao.create(authority);
+        Authority authority =  authorityDao.findByAuthority("USER");
         user.setAuthorityList(Collections.singletonList(authority));
         userDao.create(user);
     }

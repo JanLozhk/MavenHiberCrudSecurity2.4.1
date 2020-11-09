@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "user1")
+//@Table(name = "user1")
 public class User {
 
    @Id
@@ -20,15 +20,26 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @Column(name = "login")
+   @Column(name = "login", unique = true)
    private String login;
 
    @Column(name = "password")
    private String password;
 
-   @OneToMany
-   @JoinColumn(name = "user_id")
+
+   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}/*, fetch = FetchType.EAGER*/)
+   @JoinTable(
+           name = "user_authority",
+           joinColumns = { @JoinColumn(name = "user_id") },
+           inverseJoinColumns = { @JoinColumn(name = "authority_id") }
+   )
    List<Authority> authorityList;
+
+   /* @Column
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_role"))
+    private Set<Role> roles;*/
 
    public User() {
    }
